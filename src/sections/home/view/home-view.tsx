@@ -15,18 +15,18 @@ export default function HomeView() {
     <section>
       <div>
         <a href="https://vitejs.dev" target="_blank">
-          <img src="/public/vite.svg" className="logo" alt="Vite logo" />
+          <img src="/public/logo/vite.svg" className="logo" alt="Vite logo" />
         </a>
         <a href="https://react.dev" target="_blank">
-          <img src="/public/react.svg" className="logo react" alt="React logo" />
+          <img src="/public/logo/react.svg" className="logo react" alt="React logo" />
         </a>
         <a href="https://github.com/AndhikaRahmatullah" target="_blank">
-          <img src="/public/github.svg" className="logo github" alt="Github logo" />
+          <img src="/public/logo/github.svg" className="logo github" alt="Github logo" />
         </a>
       </div>
 
       <RouterLink href={paths.home} className="welcome">
-        Welcome
+        Starting template <br /> React Vite TypeScript
       </RouterLink>
 
       <div className="card">

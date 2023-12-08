@@ -101,10 +101,9 @@ button:focus-visible {
 }
 
 .welcome {
-  color: #535bf2;
+  color: #1f2937;
   font-size: 22px;
   font-weight: 700;
-  text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
