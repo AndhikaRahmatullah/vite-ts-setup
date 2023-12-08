@@ -1,10 +1,11 @@
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
 // sections
 import { HomeView } from '/src/sections/home/view';
 
 // ----------------------------------------------------------------------
 
-export default function HomePage() {
+const HomePage: React.FC = () => {
   return (
     <>
       <Helmet>
@@ -14,4 +15,6 @@ export default function HomePage() {
       <HomeView />
     </>
   );
-}
+};
+
+export default HomePage;

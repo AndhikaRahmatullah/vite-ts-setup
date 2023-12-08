@@ -1,11 +1,11 @@
-import { lazy, Suspense } from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Navigate, useRoutes, Outlet } from 'react-router-dom';
 // pages
 const HomePage = lazy(() => import('/src/pages/home/app'));
 
 // ----------------------------------------------------------------------
 
-export default function Router() {
+const Router: React.FC = () => {
   return useRoutes([
     {
       path: '/',
@@ -20,4 +20,6 @@ export default function Router() {
     // No match 404
     { path: '*', element: <Navigate to="/404" replace /> },
   ]);
-}
+};
+
+export default Router;

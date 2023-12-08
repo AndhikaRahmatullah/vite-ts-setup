@@ -1,10 +1,10 @@
-import { useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { RouterLink } from '/src/routes/components';
 import { paths } from '/src/routes/paths';
 
 // ----------------------------------------------------------------------
 
-export default function HomeView() {
+const HomeView: React.FC = () => {
   const [count, setCount] = useState<number>(0);
 
   const handleChangeCount = useCallback(() => {
@@ -40,4 +40,6 @@ export default function HomeView() {
       <p className="read-the-docs">Click on the Vite, React and Github logos to learn more</p>
     </section>
   );
-}
+};
+
+export default HomeView;

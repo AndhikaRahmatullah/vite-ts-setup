@@ -15,7 +15,7 @@ export default axiosInstance;
 
 // ----------------------------------------------------------------------
 
-export const fetcher = async (args: string | [string, AxiosRequestConfig]) => {
+export const fetcher = async (args: string | [string, AxiosRequestConfig]): Promise<any> => {
   const [url, config] = Array.isArray(args) ? args : [args];
 
   const res = await axiosInstance.get(url, { ...config });
