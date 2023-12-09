@@ -15,11 +15,11 @@ Install modules with npm
 Reinstall dependencies
 
 ```bash
-npm uninstall axios react react-dom react-helmet-async react-router react-router-dom swr
+npm uninstall axios react react-dom react-helmet-async react-router react-router-dom swr react-responsive
 ```
 
 ```bash
-npm install axios react react-dom react-helmet-async react-router react-router-dom swr
+npm install axios react react-dom react-helmet-async react-router react-router-dom swr react-responsive
 ```
 
 Reinstall dev-dependencies

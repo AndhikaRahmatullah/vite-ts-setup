@@ -27,4 +27,4 @@ export const fetcher = async (args: string | [string, AxiosRequestConfig]): Prom
 
 export const endpoints = {
   pokemon: '/pokemon',
-};
+} as const;
