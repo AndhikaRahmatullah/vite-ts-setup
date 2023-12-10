@@ -13,7 +13,7 @@ module.exports = {
   plugins: ['react-refresh', '@typescript-eslint', 'unused-imports', 'prettier', 'react'],
   extends: ['prettier'],
   rules: {
-    'no-console': 0,
+    'no-console': ['error', { allow: ['error'] }],
     camelcase: 0,
     'no-param-reassign': 0,
     'react/jsx-props-no-spreading': 0,

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 // ----------------------------------------------------------------------
 
-interface RouterLinkProps {
+interface RouterLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   href: string;
   target?: string;
   className?: string;
