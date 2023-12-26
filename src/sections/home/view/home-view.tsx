@@ -15,16 +15,16 @@ const HomeView: React.FC = () => {
   }, [theme.onUpdateTheme]);
 
   const logos: { label: string; href: string; image: string }[] = [
-    { label: 'react', href: 'https://react.dev', image: '/public/logo/react.svg' },
-    { label: 'vite', href: 'https://vitejs.dev', image: '/public/logo/vite.svg' },
-    { label: 'typescript', href: 'https://www.typescriptlang.org/', image: '/public/logo/typescript.svg' },
+    { label: 'react', href: 'https://react.dev', image: '/logo/react.svg' },
+    { label: 'vite', href: 'https://vitejs.dev', image: '/logo/vite.svg' },
+    { label: 'typescript', href: 'https://www.typescriptlang.org/', image: '/logo/typescript.svg' },
   ];
 
   return (
-    <section className="dark:bg-dark flex min-h-screen flex-col items-center justify-center gap-10 py-10 transition-all duration-300 2xl:container">
-      <p className="dark:text-light text-center text-5xl font-bold transition-all duration-300">
+    <section className="flex min-h-screen flex-col items-center justify-center gap-10 py-10 transition-all duration-300 2xl:container dark:bg-dark">
+      <p className="text-center text-5xl font-bold transition-all duration-300 dark:text-light">
         React Vite TypeScript + TailwindCSS
-        <br /> <span className="text-disabled text-3xl font-medium">Starting Template</span>
+        <br /> <span className="text-3xl font-medium text-disabled">Starting Template</span>
       </p>
 
       <div className="flex w-full justify-center gap-10">
@@ -42,12 +42,12 @@ const HomeView: React.FC = () => {
       </div>
 
       <div className="">
-        <p className="dark:text-light transition-all duration-300">
+        <p className="transition-all duration-300 dark:text-light">
           Edit <code>src/sections/home/view/home-view.tsx</code> and save to test HMR
         </p>
       </div>
 
-      <p className="dark:text-light transition-all duration-300">Click on the Vite, React and Typescript logos to learn more</p>
+      <p className="transition-all duration-300 dark:text-light">Click on the Vite, React and Typescript logos to learn more</p>
     </section>
   );
 };
