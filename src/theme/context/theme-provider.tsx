@@ -1,4 +1,8 @@
-import React, { useMemo, useCallback, useState, useEffect, ReactNode } from 'react';
+import React, { useMemo, useCallback, useEffect, ReactNode } from 'react';
+// config-global
+import { THEME_KEY } from '/src/config-global';
+// hooks
+import { useLocalStorage, getStorage } from '/src/hooks/use-local-storage';
 //
 import { Theme } from '../theme';
 import { ThemeContext } from './theme-context';
@@ -6,7 +10,13 @@ import { ThemeContext } from './theme-context';
 // ----------------------------------------------------------------------
 // TYPES
 
-type Value = string | number | object | boolean | any[];
+type StateValue = string | number | object | boolean | any[];
+
+interface LocalStorage {
+  state: InitialState;
+  update: (name: string, updateValue: StateValue) => void;
+  reset: () => void;
+}
 
 interface InitialState {
   currentTheme: 'light' | 'dark';
@@ -25,96 +35,43 @@ export interface UseContextProps {
 }
 
 // ----------------------------------------------------------------------
-// LOCAL STORAGE
-
-const getStorage = (key: string): InitialState => {
-  let value = null;
-
-  try {
-    const result = window.localStorage.getItem(key);
-
-    if (result) {
-      value = JSON.parse(result);
-    }
-  } catch (error) {
-    console.error(error);
-  }
-
-  return value;
-};
-
-const setStorage = (key: string, value: InitialState): void => {
-  try {
-    window.localStorage.setItem(key, JSON.stringify(value));
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-const removeStorage = (key: string): void => {
-  try {
-    window.localStorage.removeItem(key);
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-// ----------------------------------------------------------------------
-
-const STORAGE_KEY = 'theme';
 
 const initialState: InitialState = {
   currentTheme: 'light',
-  name: 'dika',
+  name: 'light',
 };
 
 // ----------------------------------------------------------------------
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }: ThemeProviderProps) => {
-  const [state, setState] = useState<InitialState>(initialState);
+  const { state, update, reset } = useLocalStorage(THEME_KEY, initialState) as LocalStorage;
 
   // ----------------------------------------------------------------------
-  // UPDATE STATE
 
-  const updateState = useCallback(
-    (updateValue: InitialState) => {
-      setState((prevValue) => {
-        setStorage(STORAGE_KEY, {
-          ...prevValue,
-          ...updateValue,
-        });
+  const automaticUpdateState = useCallback(() => {
+    // NAME
+    function onUpdateName(): string {
+      if (state.currentTheme === 'light') {
+        return 'light';
+      } else {
+        return 'dark';
+      }
+    }
 
-        return {
-          ...prevValue,
-          ...updateValue,
-        };
-      });
-    },
-    [STORAGE_KEY]
-  );
-
-  const update = useCallback(
-    (name: string, updateValue: Value) => {
-      updateState({
-        ...state,
-        [name]: updateValue,
-      });
-    },
-    [updateState, state]
-  );
-
-  // ----------------------------------------------------------------------
+    const updateName = onUpdateName();
+    update('name', updateName);
+  }, [update, state.currentTheme, state.name]);
 
   // ----------------------------------------------------------------------
   // SET PREV STATE ON REFRESH PAGE
 
   useEffect(() => {
-    const restored = getStorage(STORAGE_KEY);
+    const restored = getStorage(THEME_KEY);
 
     if (restored) {
-      setState(restored);
+      automaticUpdateState();
     }
-  }, []);
+  }, [state.currentTheme]);
 
   // ----------------------------------------------------------------------
 
@@ -131,10 +88,10 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }: ThemeP
     }
   }, [update, state.currentTheme]);
 
-  // Reset
+  // RESET
   const onReset = useCallback(() => {
-    removeStorage(STORAGE_KEY);
-  }, [removeStorage]);
+    reset();
+  }, [reset]);
 
   const memoizedValue = useMemo(
     () => ({
