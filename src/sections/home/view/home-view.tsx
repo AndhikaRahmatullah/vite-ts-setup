@@ -12,7 +12,7 @@ const HomeView: React.FC = () => {
 
   const handleToggleTheme = useCallback(() => {
     theme.onUpdateTheme();
-  }, [theme.onUpdateTheme]);
+  }, [theme]);
 
   const logos: { label: string; href: string; image: string }[] = [
     { label: 'react', href: 'https://react.dev', image: '/logo/react.svg' },

@@ -60,7 +60,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }: ThemeP
 
     const updateName = onUpdateName();
     update('name', updateName);
-  }, [update, state.currentTheme, state.name]);
+  }, [update, state.currentTheme]);
 
   // ----------------------------------------------------------------------
   // SET PREV STATE ON REFRESH PAGE
@@ -71,7 +71,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }: ThemeP
     if (restored) {
       automaticUpdateState();
     }
-  }, [state.currentTheme]);
+  }, [state.currentTheme, automaticUpdateState]);
 
   // ----------------------------------------------------------------------
 

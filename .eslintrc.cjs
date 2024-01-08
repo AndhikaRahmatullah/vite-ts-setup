@@ -10,7 +10,7 @@ module.exports = {
     project: ['./tsconfig.json', './tsconfig.node.json'],
     tsconfigRootDir: __dirname,
   },
-  plugins: ['react-refresh', '@typescript-eslint', 'unused-imports', 'prettier', 'react'],
+  plugins: ['react-refresh', '@typescript-eslint', 'unused-imports', 'prettier', 'react', 'react-hooks'],
   extends: ['prettier'],
   rules: {
     'no-console': ['error', { allow: ['error'] }],
@@ -19,6 +19,7 @@ module.exports = {
     'react/jsx-props-no-spreading': 0,
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     '@typescript-eslint/explicit-module-boundary-types': 'error',
+    'react-hooks/exhaustive-deps': 'error',
     'prefer-destructuring': [
       1,
       {
